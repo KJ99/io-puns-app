@@ -3,12 +3,15 @@ import { View, Text, ScrollView, Dimensions, KeyboardAvoidingView, TextInput } f
 import ScreenTitle from '../components/screen-title'
 import AvatarSelect from '../components/avatar-select'
 import Button from '../components/button'
+import base64 from 'base-64'
 
 
 export default class JoinGame extends React.Component
 {
     state = {
-        selectedAvatar: 1,
+        processing: false,
+        gameKey: ''
+
     }
 
     render()
@@ -29,8 +32,8 @@ export default class JoinGame extends React.Component
                             margin: 30
                         }}>Enter the game key</Text>
                         <TextInput
-                        value={this.state.nickname}
-                        onChangeText={text => this.setState({ ...this.state, nickname: text })}
+                        value={this.state.gameKey}
+                        onChangeText={text => this.setState({ ...this.state, gameKey: text })}
                         placeholder="Game key"
                         placeholderTextColor='wheat'
                         style={{
@@ -49,7 +52,30 @@ export default class JoinGame extends React.Component
                         />
                     </KeyboardAvoidingView>
                 </View>
-                <Button title='JOIN' width={200} />
+                <Button title='JOIN' width={200} processing={this.state.processing} onClick={() => {
+                    if(!this.state.processing) {
+                        this.setState({ ...this.state, processing: true })
+                        fetch('http://192.168.0.12:3000/v1/rooms/join', {
+                            method: 'POST',
+                            headers: {
+                                'Authorization': 'Basic ' + base64.encode('admin:password'),
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                access_key: this.state.gameKey
+                            })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            this.props.navigation.navigate('play', {
+                                accessKey: this.state.gameKey,
+                                roomKey: data.key
+                            })
+                        })
+                        .catch(e => console.error(e))
+                        .finally(() => setProcessing(false))
+                    }
+                }} />
             </View>
         )
     }

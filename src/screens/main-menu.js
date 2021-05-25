@@ -12,7 +12,7 @@ const MainMenu = ({ navigation }) => {
             backgroundColor: '#f57242' 
         }}>
             <ScreenTitle text='Puns' />
-            <Button title='CREATE ROOM' width={200} />
+            <Button title='CREATE ROOM' width={200} onClick={() => navigation.push('create')}/>
             <Button title='JOIN GAME'  width={200} onClick={() => {
                 navigation.push('join')
             }} />

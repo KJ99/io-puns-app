@@ -13,6 +13,8 @@
  import MainMenu from './src/screens/main-menu';
 import JoinGame from './src/screens/join-game';
 import Settings from './src/screens/settings';
+ import CreateGame from './src/screens/create-game'
+ import Play from './src/screens/play'
  
  const Stack = createStackNavigator()
  
@@ -27,6 +29,8 @@ import Settings from './src/screens/settings';
               <Stack.Screen name="menu" component={MainMenu} options={{ headerShown: false }} />
               <Stack.Screen name="join" component={JoinGame} options={{ headerShown: false }} />
               <Stack.Screen name="settings" component={Settings} options={{ headerShown: false }} />
+              <Stack.Screen name="create" component={CreateGame} options={{ headerShown: false }} />
+              <Stack.Screen name="play" component={Play} options={{ headerShown: false }} />
             </Stack.Navigator>
           </NavigationContainer>
        </SafeAreaView>
