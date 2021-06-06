@@ -144,6 +144,7 @@ Gra towarzyska, w trakcie tury jeden z graczy za pomocą pantomimy stara się od
 |1|docker|Uruchomienie aplikacji serwerowej na dedykowanym kontenerze, ułatwiając w ten sposób wdrażanie aplikacji w różnych środowiskach i podnosząc bezpieczeństwo|19.03|
 |2|docker compose |Połączenie wielu kontenerów dockera pracujących w tym samym czasie|3|
 
+[](#){name=scenariusze}
 ## Scenariusze testów
 
 | **Lp.** | **Identyfikator Wymagania **|**Kroki wykonania**|**Oczekiwany rezultat**|
