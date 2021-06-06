@@ -52,6 +52,13 @@ Konrad Jezierski, grupa S22-32
 
 [Architektura uruchomieniowa](#_Toc69212804)
 
+[Diagram klas](#diagram_klas)
+
+[Diagram wdrozenia](#diagram_wdrozenia)
+
+[Scenariusze testów](#scenariusze)
+
+
 
 #
 
@@ -137,3 +144,28 @@ Gra towarzyska, w trakcie tury jeden z graczy za pomocą pantomimy stara się od
 |1|docker|Uruchomienie aplikacji serwerowej na dedykowanym kontenerze, ułatwiając w ten sposób wdrażanie aplikacji w różnych środowiskach i podnosząc bezpieczeństwo|19.03|
 |2|docker compose |Połączenie wielu kontenerów dockera pracujących w tym samym czasie|3|
 
+## Scenariusze testów
+
+| **Lp.** | **Identyfikator Wymagania **|**Kroki wykonania**|**Oczekiwany rezultat**|
+| :- | :- | :- | :- |
+| 1 | P-1 | - Wykonać żadanie do REST API metodami POST i GET na końcówkę /v1/categories i /v1/words- Wysłać żądania do REST API metodami GET, PATCH, DELETE na końcówki /v1/words i /v1/categories podając na końcu ścieżki identifikator | Serwer powinien zwrócić odpowiedzi o kodach z przedziału 200-299, dane kategorii i haseł powinny zmieniać się zgodnie z treścią żądań |
+| 2 | P-2 | - Wysłać do REST API żądanie GET na końcówkę /v1/words | Zwrócone hasła powinny mieć różne wartości w polu category\_id |
+| 3 | P-3 | - W aplikacji wybierać opcję „Create game&quot; z menu głównego- Wypełnić formularz i kliknać guzik „Create&quot; | Gracz powinien zostać przeniesiony do ekranu oczekiwania na innych graczy, klucz dostępowy powinien wyświetlić się w górnej części ekranu |
+| 4 | P-4 | - Rozpocząć grę z wieloma innymi graczami- Wybierać zwycięzców w poszczególnych rundach | Po każdej rundzie (haśle) powinien wyświetlić się ranking graczy, z informacjami o nazwie gracza i liczbie zdobytych dotąd punktów |
+| 5 | P-5 | - Rozpocząć nową grę i zagrać parę rund z innymi graczami | Zaraz po akcji jakiegokolwiek gracza inni gracze powinni być powiadomieni o następnych działaniach bez podejmowania dodatkowych akcji. Ekrany z rankingiem i informacją o zwycięscy rundy powinny pokazywać się w tym samym czasie dla wszystkich graczy |
+| 6 | P-6 | - Wybrać opcję „Settings&quot; z menu głównego- Wpisać wartość do pola „nickname&quot;- Zapisać przyciskiem „Save&quot;- Rozpocząć nową grę- Zrestartować aplikację- Ponownie rozpocząć nową grę | Zarówno zaraz po wprowadzeniu nowej nazwy jak i po restarcie gry, nazwa gracza widoczna na liście graczy powinna być taka sama jak nazwa podana na ekranie ustawień |
+| 7 | P-7 | - Wybrać opcję „Settings&quot; z menu głównego - Wybrać awatar z listy dostępnych- Zapisać przyciskiem „Save&quot;- Rozpocząć nową grę- Zrestartować aplikację- Ponownie rozpocząć nową grę | Zarówno zaraz po wybraniu nowego awatara jak i po restarcie gry, awatar gracza widoczny na liście graczy powinien być taki sam jak awatar wybrany na ekranie ustawień |
+| 8 | P-10 | - Rozpocząć nową grę- Nie wybierać zwycięscy przez dłużej niż minutę | Gra powinna wyświetlić czerwony ekran z informacją o braku zwycięscy tury i przejść do następnego hasła |
+| 9 | P-11 | - Rozpocząć nową grę- Będąc prezentującym, kliknąć przycisk „Choose winner&quot; przy nazwie któregoś z graczy | Wszystkim graczom powinien wyświetlić się ekran z informacją, że ten gracz jest zwycięzcą tury. Zarówno graczowi wybranemu, jak i prezenterowi powinny zostać przypisane punkty |
+| 10 | P-12 | - Wybrać opcję „Join Game&quot; z menu głównego- Wpisać poprawny klucz dostępowy i zatwierdzić | Pokój powinien zostać znaleziony, a gracz powinien zostać przeniesiony do ekranu oczekiwania na innych graczy |
+| 11 | P-13 | - Rozpocząć nową grę- Będąc prezentującym, zwlekać z wyborem zwycięscy przez różne odstępy czasowe, mniejsze od minuty | Liczba punktów przydzielona prezentującemu i zwycięscy powinna być taka sama, a ponadto być pomniejszana zgodnie z dokumentacją wymaga |
+
+
+## Diagram klas 
+
+![alt text](https://github.com/KJ99/io-puns-app/blob/develop/diagram_klas.png)
+
+
+## Diagram wdrożenia
+
+![alt text](https://github.com/KJ99/io-puns-app/blob/develop/daigram_wdrozenia.png)
